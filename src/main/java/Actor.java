@@ -21,8 +21,8 @@ public class Actor {
 
     public int getScore() {
         int score = 0;
-        for (int i=0; i<cards.size(); i++) {
-            score += this.cards.get(i).getScore();
+        for (Card card : cards) {
+            score += card.getScore();
         }
         return score;
     }

@@ -15,7 +15,8 @@ public class Game {
         else {
             try {
                 this.deck = new CardDeck(file[0]);
-            } catch (FileNotFoundException e) {
+            }
+            catch (FileNotFoundException e) {
                 System.out.println("The file given does not exist.");
                 e.printStackTrace();
             }
@@ -47,7 +48,7 @@ public class Game {
     }
 
     private Boolean checkHoldCondition(Actor actor) {
-        if (actor.getName() != "dealer") {
+        if (!actor.getName().equals("dealer")) {
             return this.player.getScore() >= 17;
         }
         else {
