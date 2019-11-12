@@ -10,6 +10,9 @@ import java.util.Collections;
 public class CardDeck {
     private ArrayList<Card> cards;
 
+    /**
+     * Constructor for a full deck of cards, used when no card list is given.
+     */
     public CardDeck() {
         this.cards = new ArrayList<Card>();
         for (Card.Suits s: Card.Suits.values()) {
@@ -19,6 +22,11 @@ public class CardDeck {
         }
     }
 
+    /**
+     * Constructor used for a card list given as commandline argument.
+     * @param file The file containing the list of cards to be added to the deck.
+     * @throws FileNotFoundException
+     */
     public CardDeck(String file) throws FileNotFoundException {
         String[] cardList = readCardDeckFile(file);
         this.cards = new ArrayList<Card>();
@@ -32,6 +40,11 @@ public class CardDeck {
         }
     }
 
+    /**
+     * Translates a character into a card suit.
+     * @param suitChar The suit of a card to be created.
+     * @return enum of a card suit.
+     */
     private Card.Suits getSuit(Character suitChar) {
         switch (suitChar) {
             case 'C': return Card.Suits.C;
@@ -42,8 +55,16 @@ public class CardDeck {
         return null;
     }
 
+    /**
+     * Translates a Character into a cards face value.
+     * @param valueChar Character representing the face value of a card.
+     * @return enum of a cards face value.
+     */
     private Card.Values getValue(Character valueChar) {
-        if (Character.isDigit(valueChar) && Character.getNumericValue(valueChar) < 11) {
+        if (Character.isDigit(valueChar) && Character.getNumericValue(valueChar) != 0) {
+            if (valueChar == 1){
+                return Card.Values.TEN;
+            }
             return Card.Values.values()[Character.getNumericValue(valueChar)-1];
         }
         switch (valueChar) {
@@ -59,6 +80,12 @@ public class CardDeck {
         return cards;
     }
 
+    /**
+     * Reads a file containing a list of cards to be generated.
+     * @param file File with cards.
+     * @return Array of strings representing all the cards to be added to a deck.
+     * @throws FileNotFoundException
+     */
     private String[] readCardDeckFile(String file) throws FileNotFoundException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
         try {

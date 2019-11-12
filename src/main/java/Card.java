@@ -1,5 +1,10 @@
 package main.java;
 
+/**
+ * Card class with predefined constants used to represent the possible values a card can have.
+ * The two sets of constants represents the suit and value of a card.
+ * The value contains the card value and blackjack value.
+ */
 public class Card {
     public enum Suits {D, C, H, S};
     public enum Values {
@@ -17,6 +22,11 @@ public class Card {
     private Suits suit;
     private Values value;
 
+    /**
+     * Constructor for cards, taking two parameters representing two constants.
+     * @param suit enum value of the cards suit.
+     * @param value enum value of a cards face value.
+     */
     public Card(Suits suit, Values value) {
         this.suit = suit;
         this.value = value;

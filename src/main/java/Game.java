@@ -2,11 +2,18 @@ package main.java;
 
 import java.io.FileNotFoundException;
 
+/**
+ * Class containing the game logic, and instances of actors and a deck.
+ */
 public class Game {
     private Actor dealer;
     private Actor player;
     private CardDeck deck;
 
+    /**
+     * Constructor adding actors and a deck of cards to the game.
+     * @param file Possible file to use to create a dec of cards. If null, a full random deck is added to the game.
+     */
     public Game(String[] file) {
         if (file.length == 0) {
             this.deck = new CardDeck();
@@ -25,6 +32,9 @@ public class Game {
         this.player = new Actor("sam");
     }
 
+    /**
+     * Main game, using some other functions to check for win conditions, draw cards and displaying winner.
+     */
     public void playGame() {
         dealCards();
         Actor winner = blackJackOrTwentyTwo();
@@ -40,6 +50,9 @@ public class Game {
         endGame(winner);
     }
 
+    /**
+     * Deals the initial two cards to actors.
+     */
     private void dealCards() {
         for (int i=0; i<2; i++) {
             this.player.drawCard(this.deck);
